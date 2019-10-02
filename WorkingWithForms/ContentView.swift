@@ -17,20 +17,24 @@ struct ContentView: View {
     var body: some View {
         NavigationView {
             Form {
-                Picker(selection: $selectedColor, label: Text("Select a color")) {
-                    ForEach(0 ..< colors.count) {
-                        Text(self.colors[$0]).tag($0)
-                    }
-                }.pickerStyle(SegmentedPickerStyle())
+                Section(footer: Text("Note: Enabling logging may slow down the app")) {
+                    Picker(selection: $selectedColor, label: Text("Select a color")) {
+                        ForEach(0 ..< colors.count) {
+                            Text(self.colors[$0]).tag($0)
+                        }
+                    }.pickerStyle(SegmentedPickerStyle())
 
-                Toggle(isOn: $enableLogging) {
-                    Text("Enable Logging")
+                    Toggle(isOn: $enableLogging) {
+                        Text("Enable Logging")
+                    }
                 }
 
-                Button(action: {
-                // activate theme!
-                }) {
-                    Text("Save changes")
+                Section {
+                    Button(action: {
+                    // activate theme!
+                    }) {
+                        Text("Save changes")
+                    }
                 }
             }.navigationBarTitle("Settings")
         }
